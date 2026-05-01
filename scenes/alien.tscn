@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://b5bdd5fvssf6p"]
+
+[ext_resource type="Script" uid="uid://dyldhfpo1qafu" path="res://scripts/alien.gd" id="1_87urc"]
+[ext_resource type="Texture2D" uid="uid://bgpemlnrm4gpu" path="res://assets/sprites/alien/bonk.png" id="2_xd2hs"]
+[ext_resource type="Texture2D" uid="uid://dde2vj24kdmhv" path="res://assets/sprites/alien/dive.png" id="3_s6rwo"]
+[ext_resource type="Texture2D" uid="uid://b0dnl6t118mrg" path="res://assets/sprites/alien/idle.png" id="4_s03fr"]
+[ext_resource type="Texture2D" uid="uid://csyk4548oxx42" path="res://assets/sprites/alien/jump.png" id="5_ek445"]
+[ext_resource type="Texture2D" uid="uid://nwk7ngyy2x6e" path="res://assets/sprites/alien/landing.png" id="6_454pd"]
+[ext_resource type="Texture2D" uid="uid://cmhpmnwdd2ujk" path="res://assets/sprites/alien/running_1.png" id="7_vr5s4"]
+[ext_resource type="Texture2D" uid="uid://bqscjc8exmo47" path="res://assets/sprites/alien/running_2.png" id="8_8lmac"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_46lrd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xd2hs")
+}],
+"loop": true,
+"name": &"bonk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_s6rwo")
+}],
+"loop": true,
+"name": &"dive",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_s03fr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ek445")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_454pd")
+}],
+"loop": true,
+"name": &"landing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_vr5s4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s03fr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8lmac")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s03fr")
+}],
+"loop": true,
+"name": &"running",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jox8"]
+size = Vector2(200, 240)
+
+[node name="Alien" type="CharacterBody2D" unique_id=1996778909]
+script = ExtResource("1_87urc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1593199107]
+sprite_frames = SubResource("SpriteFrames_46lrd")
+animation = &"idle"
+frame_progress = 0.6838808
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1925084695]
+shape = SubResource("RectangleShape2D_8jox8")
