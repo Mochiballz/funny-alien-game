@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c2l81j87nbgn"]
+
+[ext_resource type="PackedScene" uid="uid://cqkg20llmfswa" path="res://scenes/level_1.tscn" id="1_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://b5bdd5fvssf6p" path="res://scenes/alien.tscn" id="2_4wyf3"]
+
+[node name="World" type="Node2D" unique_id=85405893]
+
+[node name="Node2D" parent="." unique_id=1075425797 instance=ExtResource("1_rwgxs")]
+
+[node name="Alien" parent="." unique_id=1996778909 instance=ExtResource("2_4wyf3")]
+position = Vector2(524, 281)
