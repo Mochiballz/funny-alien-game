@@ -70,7 +70,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8jox8"]
-size = Vector2(160, 240)
+size = Vector2(120, 240)
 
 [node name="Alien" type="CharacterBody2D" unique_id=1996778909]
 script = ExtResource("1_87urc")
@@ -79,7 +79,12 @@ script = ExtResource("1_87urc")
 sprite_frames = SubResource("SpriteFrames_46lrd")
 animation = &"running"
 autoplay = "running"
-frame_progress = 0.20709263
+frame_progress = 0.85770506
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1925084695]
 shape = SubResource("RectangleShape2D_8jox8")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=500129864]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
