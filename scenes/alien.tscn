@@ -85,6 +85,5 @@ frame_progress = 0.010846111
 shape = SubResource("RectangleShape2D_8jox8")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=500129864]
-position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
