@@ -4,6 +4,9 @@ extends CharacterBody2D
 const SPEED = 500.0
 const JUMP_VELOCITY = -1200.0
 
+func _ready() -> void:
+	set_floor_snap_length(2.0)
+
 func _physics_process(delta: float) -> void:
 	
 	# Add animation
