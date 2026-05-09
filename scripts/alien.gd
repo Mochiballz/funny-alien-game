@@ -8,11 +8,12 @@ const JUMP_VELOCITY = -800.0
 const DIVE_VELOCITY = 600.0
 const DIVE_ROTATE_MAX = 45.0
 
-const BONK_DURATION = 0.5
+const BONK_DURATION = 0.2
 
 var is_diving = false
+var is_bonking = false
 var elapsed_rotate = 0.0
-var dive_velocity = velocity
+var elapsed_bonk = 0.0
 
 func rotate_on_fall(delta: float):
 	var max_rotation = deg_to_rad(DIVE_ROTATE_MAX)
@@ -26,6 +27,20 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	
+	# Check if alien is still bonking
+	if is_bonking:
+		if elapsed_bonk > BONK_DURATION:
+			velocity.y = DIVE_VELOCITY * -2
+			is_bonking = false
+			elapsed_bonk = 0.0
+			return
+		velocity = Vector2.ZERO
+		elapsed_bonk += delta
+		return
+	else:
+		is_bonking = false
+		elapsed_bonk = 0.0
+	
 	# Add animation
 	if velocity.x > 1 or velocity.x < -1:
 		$AnimatedSprite2D.animation = "running"
@@ -36,7 +51,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		$AnimatedSprite2D.animation = "jump"
-		
 	else:
 		rotation = 0.0
 
@@ -50,13 +64,18 @@ func _physics_process(delta: float) -> void:
 		is_diving = true
 		velocity.y = DIVE_VELOCITY
 	
+	# Handle rotation when falling
 	if velocity.y > 1 and is_diving:
 		$AnimatedSprite2D.animation = "dive"
 		rotate_on_fall(delta)
 	else:
 		elapsed_rotate = 0.0
-		is_diving = false
 		
+	# Handle bonk
+	if is_diving and is_on_floor():
+		$AnimatedSprite2D.animation = "bonk"
+		is_diving = false
+		is_bonking = true
 	
 
 	# Get the input direction and handle the movement/deceleration.
